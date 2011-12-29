@@ -18,9 +18,6 @@ BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
 Requires(post):	texlive-kpathsea
-Conflicts:	texlive-texmf <= 20110705-3
-Conflicts:	texlive-doc <= 20110705-3
-Conflicts:	texlive-source <= 20110705-3
 
 %description
 The FPL Fonts provide a set of SC/OsF fonts for URW Palladio L
@@ -37,20 +34,12 @@ Walter Schmidt's improved Palatino metrics. LaTeX use is
 enabled by the mathpazo package, which is part of the psnfss
 distribution.
 
-%pre
-    %_texmf_mktexlsr_pre
-
 %post
-    %_texmf_mktexlsr_post
-
-%preun
-    if [ $1 -eq 0 ]; then
-	%_texmf_mktexlsr_pre
-    fi
+    %{_sbindir}/texlive.post
 
 %postun
     if [ $1 -eq 0 ]; then
-	%_texmf_mktexlsr_post
+	%{_sbindir}/texlive.post
     fi
 
 #-----------------------------------------------------------------------
@@ -87,7 +76,6 @@ distribution.
 %doc %{_texmfdistdir}/source/fonts/fpl/TeXPalladioL-ItalicOsF.pe
 %doc %{_texmfdistdir}/source/fonts/fpl/TeXPalladioL-SC.pe
 %doc %{_texmfdistdir}/source/fonts/fpl/URW-OtherSubrs.ps
-%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -98,5 +86,3 @@ distribution.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar fonts doc source %{buildroot}%{_texmfdistdir}
-mkdir -p %{buildroot}%{_tlpkgobjdir}
-cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
