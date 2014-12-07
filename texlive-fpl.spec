@@ -6,7 +6,7 @@
 # catalog-version 1.002
 Name:		texlive-fpl
 Version:	1.002
-Release:	8
+Release:	9
 Summary:	SC and OsF fonts for URW Palladio L
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/fonts/fpl
