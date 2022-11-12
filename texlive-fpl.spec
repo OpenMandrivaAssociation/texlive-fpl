@@ -1,19 +1,13 @@
-# revision 15878
-# category Package
-# catalog-ctan /fonts/fpl
-# catalog-date 2007-09-28 22:20:10 +0200
-# catalog-license gpl
-# catalog-version 1.002
 Name:		texlive-fpl
-Version:	1.003
+Version:	54512
 Release:	1
 Summary:	SC and OsF fonts for URW Palladio L
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/fonts/fpl
 License:	GPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/fpl.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/fpl.doc.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/fpl.source.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/fpl.r%{version}.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/fpl.doc.r%{version}.tar.xz
+Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/fpl.source.r%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -35,12 +29,12 @@ enabled by the mathpazo package, which is part of the psnfss
 distribution.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -79,24 +73,11 @@ distribution.
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1 -a2
+%setup -c -a1 -a2
+%autopatch -p1
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar fonts doc source %{buildroot}%{_texmfdistdir}
-
-
-%changelog
-* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 1.002-2
-+ Revision: 752090
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 1.002-1
-+ Revision: 718500
-- texlive-fpl
-- texlive-fpl
-- texlive-fpl
-- texlive-fpl
-
