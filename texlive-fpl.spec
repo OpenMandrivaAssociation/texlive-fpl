@@ -1,6 +1,6 @@
 Name:		texlive-fpl
 Version:	54512
-Release:	1
+Release:	2
 Summary:	SC and OsF fonts for URW Palladio L
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/fonts/fpl
